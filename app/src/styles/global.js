@@ -18,7 +18,7 @@ const GlobalStyle = createGlobalStyle`
 
 /* fonts */
 --font-inter: Inter;
---font-lemon: Lemon;
+--font-lemon: 'Lemon', cursive;
 
 /* font sizes */
 --font-size-xl: 20px;
