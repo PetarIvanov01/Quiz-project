@@ -16,7 +16,9 @@ const GlobalStyle = createGlobalStyle`
 }
 :root {
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600&family=Mooli&family=Roboto:wght@100&display=swap');
 /* fonts */
+--font-mooli: 'Mooli',sans-serif;
 --font-inter: Inter;
 --font-lemon: 'Lemon', cursive;
 
