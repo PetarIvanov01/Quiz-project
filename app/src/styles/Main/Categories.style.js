@@ -15,7 +15,7 @@ const CategoriesSection = styled.section`
 }
 `
 
-const GameCard = styled.div`
+const GameCardStyle = styled.div`
 
     display: flex;
     align-items:center;
@@ -73,4 +73,4 @@ const GamePlayButton = styled.div`
     }
 `
 
-export { CategoriesSection, GameCard, GameCategory, GameQuestions, GamePlayButton }
+export { CategoriesSection, GameCardStyle, GameCategory, GameQuestions, GamePlayButton }
