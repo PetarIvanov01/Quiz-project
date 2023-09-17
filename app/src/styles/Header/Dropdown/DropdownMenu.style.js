@@ -19,12 +19,17 @@ const DropDown = styled.nav`
         transition:  150ms ease-in-out;
     }
 
+    &.disable {
+        pointer-events: none ;
+        opacity: 0.6 ; 
+    }
 
     .logo-mini {
         width: 40px;
     }
 
 `
+
 const DropDownMenu = styled.div`
 
         list-style-type: none;
@@ -34,7 +39,6 @@ const DropDownMenu = styled.div`
         align-items: center;
         position: absolute;
         top: 15%;
-        
 `
 
 const Menu = styled.div`
