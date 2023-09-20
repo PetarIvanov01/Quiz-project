@@ -5,6 +5,7 @@ import WindowRoot from "./styles/body/Window.style"
 import { Route, Routes } from 'react-router-dom'
 import GamePlay from "./components/View/Game"
 import { NavigationProvider } from "./context/navigation"
+import TransitionToGame from "./components/View/TransitionComponent"
 
 export default function App() {
 
@@ -15,7 +16,9 @@ export default function App() {
           <Header />
           <Routes>
             <Route path="/" element={<Main />} />
-            <Route path="/game" element={<GamePlay />} />
+            <Route element={<TransitionToGame />}>
+              <Route path="/game" element={<GamePlay />} />
+            </Route>
           </Routes>
         </NavigationProvider>
       </WindowRoot>
