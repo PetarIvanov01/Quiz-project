@@ -16,9 +16,13 @@ export function NavigationProvider({ children }) {
         setIsDisabled(true)
     }
 
+    const notDisabled = () => {
+        setIsDisabled(false)
+    }
+
 
     return (
-        <MyContext.Provider value={{ toggleMenu, isMenuOpen, isMenuDisabled, isDisabled }}>
+        <MyContext.Provider value={{ toggleMenu, isMenuOpen, isMenuDisabled, isDisabled, notDisabled }}>
 
             {children}
         </MyContext.Provider>
