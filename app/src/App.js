@@ -3,9 +3,9 @@ import Main from "./components/Main/Main"
 import Footer from "./components/Footer/Footer"
 import WindowRoot from "./styles/body/Window.style"
 import { Route, Routes } from 'react-router-dom'
-import GamePlay from "./components/View/Game"
 import { NavigationProvider } from "./context/navigation"
 import TransitionToGame from "./components/View/TransitionComponent"
+import GamePlay from "./components/View/GameComponents/Game"
 
 export default function App() {
 
