@@ -1,11 +1,13 @@
 import styled from "styled-components";
 import { Logo } from "../Main/Main.style";
+import { Link } from "react-router-dom";
 
 
 
 const GamePlayStyle = styled.div`
 
     width: 100%;
+    position: relative;
 
 `;
 
@@ -81,6 +83,7 @@ const AnswerField = styled.div`
 
     }
 
+
 `
 const Answer = styled.span`
     width: max-content;
@@ -90,4 +93,14 @@ const Answer = styled.span`
 
 `
 
-export { GamePlayStyle, LogoForGames, TimerStyle, QuestionBoxStyle,AnswerField,AnswerContainer,Answer,SectionStyle }
+const ExitButton = styled(Link)`
+    display: block;
+    text-decoration: none;
+    color: black;
+    font-size: 1.2em;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+`
+
+export { GamePlayStyle, LogoForGames, TimerStyle, QuestionBoxStyle, AnswerField, AnswerContainer, Answer, SectionStyle, ExitButton }
