@@ -1,10 +1,11 @@
 import { TimerStartStyle, TransitionStyle } from '../../styles/ViewStyle/TransitionComponent.style'
 import { useEffect, useState } from 'react'
 import FetchQuestionData from './GameComponents/FetchGame';
+import { useParams } from 'react-router-dom';
 
 export default function TransitionToGame() {
 
-
+    const { category } = useParams();
     const [count, setCount] = useState(3);
 
     useEffect(() => {
@@ -23,7 +24,7 @@ export default function TransitionToGame() {
         return () => clearTimeout(timer);
     }, [count]);
 
-    if (count === 'next') return <FetchQuestionData/>
+    if (count === 'next') return <FetchQuestionData category={category} />
 
     return (
         <TransitionStyle>
