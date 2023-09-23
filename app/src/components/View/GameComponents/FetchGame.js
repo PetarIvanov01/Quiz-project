@@ -1,24 +1,33 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom'
-export default function FetchQuestionData() {
+import getCategory from '../../../services/QuizService';
+import { LoadingSpinner } from '../../../styles/modals/LoadingSpinner.style';
 
+export default function FetchQuestionData({
+    category
+}) {
+    
     const [quizData, setQuizData] = useState(null);
+    const [dataFetched, setDataFetched] = useState(false);
+
+    const getData = useCallback(async () => {
+        return await getCategory[category]();
+    }, [category]);
 
     useEffect(() => {
+        if (category && !dataFetched) { 
+            getData()
+                .then(e => {
+                    setQuizData(e);
+                    console.log(e);
+                    setDataFetched(true); 
+                })
+                .catch(error => {
+                    console.error(error);
+                    setDataFetched(true); 
+                });
+        }
+    }, [category, getData, dataFetched]);
 
-        questonData()
-
-
-    }, []);
-
-    
-    async function questonData() {
-
-        let res = await fetch('/mockQuizData.json')
-        let data = await res.json();
-        setQuizData(data)
-
-    }
-
-    return  quizData && <Outlet context={quizData} />
+    return quizData ? <Outlet context={{ quizData, category }} /> : <LoadingSpinner />;
 }
