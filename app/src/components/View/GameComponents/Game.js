@@ -1,19 +1,20 @@
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useNavigate, useOutletContext } from "react-router-dom";
 import { useNavContext } from "../../../context/navigation";
+
 import { ExitButton, GamePlayStyle, LogoForGames, TimerStyle } from "../../../styles/ViewStyle/Game.style";
-import { Link } from "react-router-dom";
 import ExitDialogComponent from "../ExitDialog";
 import QuestionAndAnswers from "./QuestionAnswerComponent";
 
-const GAMETIME = 10
+const GAMETIME = 2
 export default function GamePlay() {
 
     const navigate = useNavigate();
     const { isDisabled } = useNavContext();
     const [showExitConfirmation, setShowExitConfirmation] = useState(false);
 
-    const quizData = useOutletContext();
+    const { quizData, category } = useOutletContext();
     const [currentQuestion, setCurrentQuestion] = useState({});
 
     const [timer, setTimer] = useState(GAMETIME);
@@ -21,12 +22,12 @@ export default function GamePlay() {
     useEffect(() => {
         isDisabled();
 
-        if (timer === GAMETIME && quizData.length !== 0) {
-            setCurrentQuestion(quizData.pop());
+        if (timer === GAMETIME && quizData.length > 0) {
+            const newQuestion = quizData.pop()
+            setCurrentQuestion(newQuestion);
         }
         else if (quizData.length === 0 && timer === 0) {
-        //Todo navigate to the end of the game
-            return navigate('/')
+            return navigate(`/game/${category}/complete`)
         }
 
         const countdownInterval = setInterval(() => {
@@ -43,7 +44,7 @@ export default function GamePlay() {
 
         return () => clearInterval(countdownInterval);
 
-    }, [isDisabled, timer, showExitConfirmation, quizData])
+    }, [isDisabled, timer, showExitConfirmation, quizData, category, navigate])
 
 
 
