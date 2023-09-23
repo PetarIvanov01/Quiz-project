@@ -17,6 +17,7 @@ const CategoriesSection = styled.section`
 
 const GameCardStyle = styled.div`
 
+    min-width: 560px;
     display: flex;
     align-items:center;
     gap: 5em;
@@ -31,6 +32,7 @@ const GameCategory = styled.div`
     display: flex;
     align-items: center;
     gap: 1em;
+    flex-grow: 1;
     
     .img-category{
         margin: 1em;
@@ -46,6 +48,7 @@ const GameCategory = styled.div`
 `
 
 const GameQuestions = styled.div`
+    margin-left: auto;
     display: flex;
     padding: 0.75em;
     gap: 1em;
@@ -66,6 +69,7 @@ const GameQuestions = styled.div`
 `
 
 const GamePlayButton = styled.div`
+    margin-left: auto;
     margin-right: 1em;
 
     img {

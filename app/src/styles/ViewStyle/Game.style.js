@@ -83,6 +83,9 @@ const AnswerField = styled.div`
 
     }
 
+   @media (max-width: 1000px) {
+        width: 350px;
+    }
 
 `
 const Answer = styled.span`
