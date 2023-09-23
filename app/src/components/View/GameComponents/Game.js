@@ -1,59 +1,30 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
 import { useNavContext } from "../../../context/navigation";
 
 import { ExitButton, GamePlayStyle, LogoForGames, TimerStyle } from "../../../styles/ViewStyle/Game.style";
 import ExitDialogComponent from "../ExitDialog";
 import QuestionAndAnswers from "./QuestionAnswerComponent";
+import useQuizTimer from "../../../hooks/useQuizTimer.js";
 
-const GAMETIME = 2
 export default function GamePlay() {
 
-    const navigate = useNavigate();
+    const { quizData, category } = useOutletContext();
+
     const { isDisabled } = useNavContext();
     const [showExitConfirmation, setShowExitConfirmation] = useState(false);
+    const { timer, currentQuestion } = useQuizTimer({ showExitConfirmation, quizData, category });
 
-    const { quizData, category } = useOutletContext();
-    const [currentQuestion, setCurrentQuestion] = useState({});
-
-    const [timer, setTimer] = useState(GAMETIME);
 
     useEffect(() => {
         isDisabled();
 
-        if (timer === GAMETIME && quizData.length > 0) {
-            const newQuestion = quizData.pop()
-            setCurrentQuestion(newQuestion);
-        }
-        else if (quizData.length === 0 && timer === 0) {
-            return navigate(`/game/${category}/complete`)
-        }
-
-        const countdownInterval = setInterval(() => {
-            if (!showExitConfirmation) {
-
-                if (timer > 0) {
-                    setTimer(timer - 1);
-                } else {
-                    clearInterval(countdownInterval);
-                    setTimer(GAMETIME)
-                }
-            }
-        }, 1000);
-
-        return () => clearInterval(countdownInterval);
-
-    }, [isDisabled, timer, showExitConfirmation, quizData, category, navigate])
-
-
+    }, [isDisabled])
 
     const showExitDialog = () => {
-
         setShowExitConfirmation(true);
-
     }
-
 
     return (
         <GamePlayStyle>
@@ -68,7 +39,7 @@ export default function GamePlay() {
                 <p>{timer}</p>
             </TimerStyle>
 
-            {currentQuestion.hasOwnProperty('question') && <QuestionAndAnswers timer={timer} quizData={currentQuestion} />}
+            {currentQuestion.hasOwnProperty('question') && <QuestionAndAnswers quizData={currentQuestion} />}
 
             {showExitConfirmation && <ExitDialogComponent setShowExitConfirmation={setShowExitConfirmation} />}
 
