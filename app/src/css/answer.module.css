@@ -1,7 +1,12 @@
 .correct {
-    background-color: #9cfc97 !important; 
+    background-color: #9cfc97 !important;
 }
 
 .in-correct {
     background-color: #f71735 !important;
+}
+
+.onAnswer {
+    pointer-events: none;
+    filter: blur(1px);
 }

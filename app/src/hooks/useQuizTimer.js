@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 const GAMETIME = 10;
 
 export default function useQuizTimer({ showExitConfirmation, quizData, category }) {
-    
+
     const navigate = useNavigate();
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [timer, setTimer] = useState(GAMETIME);
@@ -31,5 +31,5 @@ export default function useQuizTimer({ showExitConfirmation, quizData, category 
 
     const currentQuestion = quizData[currentQuestionIndex];
 
-    return { timer, currentQuestion };
+    return { timer, currentQuestion, setTimer };
 }
