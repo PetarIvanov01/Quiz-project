@@ -1,8 +1,10 @@
+import { Link } from "react-router-dom";
+
 import { useEffect } from "react"
 import { useNavContext } from "../../../context/navigation"
-import { LogoForGames } from "../../../styles/ViewStyle/Game.style";
-import { Link } from "react-router-dom";
+
 import { MainStyle } from "../../../styles/Main/Main.style";
+import { LogoForGames } from "../../../styles/ViewStyle/Game.style";
 import { QuestionBox, QuestionContainer, QuestionsBoxContainer, QuizCompleteGreeting, Stats } from "../../../styles/ViewStyle/GameFinish/GameFinishStyles.style";
 
 export default function CompleteGame() {
@@ -13,7 +15,7 @@ export default function CompleteGame() {
 
         notDisabled();
 
-    }, [])
+    }, [notDisabled])
 
     return (
         <MainStyle>
