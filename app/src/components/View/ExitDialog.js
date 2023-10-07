@@ -1,5 +1,6 @@
-import { ExitConfirmationModal, ExitConfirmationOverlay, ModalButton, ModalText } from "../../styles/modals/ExitDialog.style";
 import { useNavigate } from 'react-router-dom'
+
+import { ExitConfirmationModal, ExitConfirmationOverlay, ModalButton, ModalText } from "../../styles/modals/ExitDialog.style";
 export default function ExitDialogComponent({ setShowExitConfirmation }) {
 
     const navigate = useNavigate()
