@@ -1,35 +1,24 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
-const GAMETIME = 10;
+const GAME_TIME = 10;
 
-export default function useQuizTimer({ showExitConfirmation, quizData, category }) {
+export default function useQuizTimer(showExitConfirmation) {
 
-    const navigate = useNavigate();
-    const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-    const [timer, setTimer] = useState(GAMETIME);
+    const [timer, setTimer] = useState(GAME_TIME);
 
     useEffect(() => {
-        if (!showExitConfirmation) {
-            // When timer reaches 0, increment the question index
-            if (timer < 0 && currentQuestionIndex < quizData.length - 1) {
-                setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
-                setTimer(GAMETIME); // Reset timer
-            }
-            // When timer reaches 0 and no more questions, navigate to complete page
-            else if (timer < 0 && currentQuestionIndex === quizData.length - 1) {
-                return navigate(`/game/${category}/complete`);
-            }
 
-            const timeout = setTimeout(() => {
-                setTimer((prevTimer) => prevTimer - 1);
-            }, 1000);
+        if (showExitConfirmation) return;
 
-            return () => clearTimeout(timeout);
-        }
-    }, [timer, showExitConfirmation, quizData, navigate, category, currentQuestionIndex]);
+        else if (timer < 0)  setTimer(GAME_TIME)
+        
+        const timeout = setTimeout(() => {
+            setTimer((prevTimer) => prevTimer - 1);
+        }, 1000);
 
-    const currentQuestion = quizData[currentQuestionIndex];
+        return () => clearTimeout(timeout);
 
-    return { timer, currentQuestion, setTimer };
+    }, [timer, showExitConfirmation]);
+
+    return { timer, setTimer };
 }
