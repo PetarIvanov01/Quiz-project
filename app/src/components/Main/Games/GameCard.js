@@ -40,7 +40,7 @@ export default function GameCard() {
 
             <GameCardStyle>
                 <GameCategory >
-                    <img className='img-category' src="/home-imgs/categories/sport.png" alt="general" />
+                    <img className='img-category' src="/home-imgs/categories/general.png" alt="general" />
                     <p className="text-category">General</p>
                 </GameCategory>
                 <GameQuestions>
