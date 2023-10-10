@@ -8,7 +8,6 @@ import decodeHtmlEntities from "../../../util/decode";
 const QuestionAndAnswers = ({ currentQuestion, onClickReset }) => {
 
     const [isAnswerd, setAnswer] = useState(false);
-    const [answeredQuestions, setAnsweredQuestions] = useState([]);
 
     const [isCorrect, setIsCorrect] = useState({
         name: '',
@@ -19,15 +18,11 @@ const QuestionAndAnswers = ({ currentQuestion, onClickReset }) => {
     useEffect(() => {
 
         if (isAnswerd) {
-            setAnsweredQuestions((state) => ([
-                ...state,
-                { ...currentQuestion, answer: isCorrect.answer === 'correct' ? true : false }
-            ]));
+            onClickReset({ ...currentQuestion, answer: isCorrect.answer === 'correct' ? true : false });
             setAnswer(false);
         }
 
-
-    }, [currentQuestion, isCorrect.answer, isAnswerd])
+    }, [currentQuestion, isCorrect.answer, isAnswerd, onClickReset])
 
     const onAnswerClick = (e) => {
 
@@ -50,9 +45,7 @@ const QuestionAndAnswers = ({ currentQuestion, onClickReset }) => {
             }));
         }
         setAnswer(true);
-        onClickReset(isCorrect.correct);
     }
-
 
     return (
         <>
