@@ -1,8 +1,15 @@
-export default function useQuizReset({ setTimer, currentQuestion }) {
+import { useState } from "react"
 
-    function onClickReset(answers) {
+export default function useQuizReset(setTimer) {
+
+    const [userAnswers, setUserAnswer] = useState([]);
+
+    const onClickReset = (currentAnswerByUser) => {
         setTimer(0)
+        setUserAnswer(state => [...state, currentAnswerByUser])
     }
 
-    return onClickReset
+
+
+    return { onClickReset, userAnswers}
 }
