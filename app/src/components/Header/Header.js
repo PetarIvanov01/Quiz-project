@@ -13,7 +13,7 @@ export default function Header() {
       <DropDown className={disabled ? 'disable' : isOpen ? 'active' : ''} >
 
         <Menu onClick={toggleMenu} className="menu">
-          <Link><img className="logo" src="/home-imgs/menu-icon@3x.png" alt="" /></Link>
+          <img className="logo" src="/home-imgs/menu-icon@3x.png" alt="" />
         </Menu>
 
         <DropDownMenu $isOpen={isOpen} >
