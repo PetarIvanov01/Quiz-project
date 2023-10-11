@@ -57,5 +57,10 @@ const QuestionBox = styled.div`
         text-decoration: underline;
         font-family: var(--font-mooli);
     }
+
+    & > img {
+        width: 1.2em;
+        height: 1.2em;
+    }
 `
 export { QuizCompleteGreeting, Stats, QuestionContainer, QuestionBox, QuestionsBoxContainer }

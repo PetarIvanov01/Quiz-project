@@ -55,15 +55,23 @@ const AnswerContainer = styled.div`
     flex-wrap: wrap;
     gap: 5em;
 
+    &.disable {
+        pointer-events: none;
+        cursor: not-allowed;
+    }
 
 `
 const SectionStyle = styled.div`
+
+    justify-content: center;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     gap: 2em;
     margin-bottom:1em;
-
+    
 `
+
 const AnswerField = styled.div`
 
     cursor: pointer;
