@@ -1,30 +1,38 @@
 import { memo, useEffect, useState } from "react";
-
-import { Answer, AnswerContainer, AnswerField, QuestionBoxStyle, SectionStyle } from "../../../styles/ViewStyle/Game.style";
-import styles from "../../../css/answer.module.css"
+import { AnswerContainer, QuestionBoxStyle, SectionStyle } from "../../../styles/ViewStyle/Game.style";
 
 import decodeHtmlEntities from "../../../util/decode";
+import AnswerComponent from "./AnswerField";
 
 const QuestionAndAnswers = ({ currentQuestion, onClickReset }) => {
 
-    const [isAnswerd, setAnswer] = useState(false);
+    const [isAnswered, setAnswer] = useState(false);
+    const [isDisabled, setDisable] = useState(false);
 
     const [isCorrect, setIsCorrect] = useState({
         name: '',
         answer: '',
-        correct: 0
+        correct: 0,
     });
 
     useEffect(() => {
 
-        if (isAnswerd) {
+        const timeout = setTimeout(() => {
+            setDisable(false)
+        }, 1000)
+
+        if (isAnswered) {
             onClickReset({ ...currentQuestion, answer: isCorrect.answer === 'correct' ? true : false });
             setAnswer(false);
         }
 
-    }, [currentQuestion, isCorrect.answer, isAnswerd, onClickReset])
+        return () => clearTimeout(timeout);
+
+    }, [currentQuestion, isCorrect.answer, isAnswered, onClickReset, isDisabled])
 
     const onAnswerClick = (e) => {
+        setAnswer(true);
+        setDisable(true);
 
         const target = e.currentTarget;
         const answer = target.getAttribute('data-answer');
@@ -44,7 +52,7 @@ const QuestionAndAnswers = ({ currentQuestion, onClickReset }) => {
                 correct: prev.correct
             }));
         }
-        setAnswer(true);
+
     }
 
     return (
@@ -53,47 +61,18 @@ const QuestionAndAnswers = ({ currentQuestion, onClickReset }) => {
                 <p>{decodeHtmlEntities(currentQuestion?.question)}</p>
             </QuestionBoxStyle>
 
-            <AnswerContainer >
+            <AnswerContainer className={isDisabled ? 'disable' : ''}>
 
-                <SectionStyle>
-                    <AnswerField
-                        className={isCorrect.name === currentQuestion?.answers[0]?.text && styles[isCorrect.answer]}
-                        data-name={currentQuestion?.answers[0]?.text}
-                        data-answer={currentQuestion?.answers[0]?.correct}
-                        onClick={onAnswerClick}
-                    >
-                        <p>A.</p>
-                        <Answer >{decodeHtmlEntities(currentQuestion?.answers[0]?.text)}</Answer>
-                    </AnswerField>
-
-                    <AnswerField
-                        className={isCorrect.name === currentQuestion?.answers[1]?.text && styles[isCorrect.answer]}
-                        data-name={currentQuestion?.answers[1]?.text}
-                        data-answer={currentQuestion?.answers[1]?.correct}
-                        onClick={onAnswerClick} >
-                        <p>B.</p>
-                        <Answer>{decodeHtmlEntities(currentQuestion?.answers[1]?.text)}</Answer>
-                    </AnswerField>
-                </SectionStyle>
-
-                <SectionStyle>
-                    <AnswerField
-                        className={isCorrect.name === currentQuestion?.answers[2]?.text && styles[isCorrect.answer]}
-                        data-name={currentQuestion?.answers[2]?.text}
-                        data-answer={currentQuestion?.answers[2]?.correct}
-                        onClick={onAnswerClick} >
-                        <p>C.</p>
-                        <Answer>{decodeHtmlEntities(currentQuestion?.answers[2]?.text)}</Answer>
-                    </AnswerField>
-
-                    <AnswerField
-                        className={isCorrect.name === currentQuestion?.answers[3]?.text && styles[isCorrect.answer]}
-                        data-name={currentQuestion?.answers[3]?.text}
-                        data-answer={currentQuestion?.answers[3]?.correct}
-                        onClick={onAnswerClick} >
-                        <p>D.</p>
-                        <Answer>{decodeHtmlEntities(currentQuestion?.answers[3]?.text)}</Answer>
-                    </AnswerField>
+                <SectionStyle  >
+                    {currentQuestion?.answers.map((answer, index) => (
+                        <AnswerComponent
+                            key={index}
+                            index={index}
+                            answer={answer}
+                            isCorrect={isCorrect}
+                            onAnswerClick={onAnswerClick}
+                        />
+                    ))}
                 </SectionStyle>
 
             </AnswerContainer >
