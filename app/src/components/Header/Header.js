@@ -19,7 +19,7 @@ export default function Header() {
         <DropDownMenu $isOpen={isOpen} >
           <li><Link to={'/'}><img className="logo-mini" src="/home-imgs/mini-home-icon@3x.png" alt="" /></Link></li>
           <li><Link to={'/leaderboard'}><img className="logo-mini" src="/home-imgs/throphy-icon@3x.png" alt="" /></Link></li>
-          <li><Link><img className="logo-mini" src="/home-imgs/user-icon@3x.png" alt="" /></Link></li>
+          <li><Link to={'/login'}><img className="logo-mini" src="/home-imgs/user-icon@3x.png" alt="" /></Link></li>
         </DropDownMenu>
 
       </DropDown>
