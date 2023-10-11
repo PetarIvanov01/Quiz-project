@@ -25,6 +25,8 @@ const Logo = styled.div`
         }
     }
 
+ 
+
 `
 
 export { MainStyle, Logo }
