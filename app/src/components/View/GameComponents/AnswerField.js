@@ -3,13 +3,12 @@ import styles from "../../../css/answer.module.css"
 import { Answer, AnswerField } from "../../../styles/ViewStyle/Game.style";
 
 
-const AnswerComponent = ({ answer,  isCorrect, onAnswerClick, index }) => {
-
-
+const AnswerComponent = ({ answer, isCorrect, onAnswerClick, index }) => {
+    
     return (
 
         <AnswerField
-            className={isCorrect.name === answer.text && styles[isCorrect.answer]}
+            className={`${isCorrect.name === answer.text && styles[isCorrect.answer]}`}
             data-name={answer.text}
             data-answer={answer.correct}
             onClick={onAnswerClick}
