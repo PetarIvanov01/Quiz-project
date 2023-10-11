@@ -1,21 +1,27 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useNavContext } from "../../../context/navigation"
 
 import { MainStyle } from "../../../styles/Main/Main.style";
 import { LogoForGames } from "../../../styles/ViewStyle/Game.style";
 import { QuestionBox, QuestionContainer, QuestionsBoxContainer, QuizCompleteGreeting, Stats } from "../../../styles/ViewStyle/GameFinish/GameFinishStyles.style";
+import formatStats from "../../../util/formatStats";
 
 export default function CompleteGame() {
 
+    const location = useLocation();
     const { notDisabled } = useNavContext()
 
-    useEffect(() => {
+    const [userQuestionAndAnswers, setQuestions] = useState([]);
 
+    useEffect(() => {
+        const { questionsWithAnswers } = location?.state;
+
+        setQuestions(questionsWithAnswers);
         notDisabled();
 
-    }, [notDisabled])
+    }, [notDisabled, location])
 
     return (
         <MainStyle>
@@ -29,28 +35,23 @@ export default function CompleteGame() {
             </QuizCompleteGreeting>
 
             <Stats >
-                <p>Stats: 3/5</p>
+                <p>Stats: {formatStats(userQuestionAndAnswers)}/5</p>
             </Stats>
 
             <QuestionContainer>
                 <p>Questions: </p>
 
                 <QuestionsBoxContainer>
-                    <QuestionBox>
-                        <p>Lorem ipsum dolor sit... ?</p> <img src="/quiz-imgs/right.png" alt="" />
-                    </QuestionBox>
-                    <QuestionBox>
-                        <p>Lorem ipsum, dolor si... ?</p> <img src="/quiz-imgs/wrong.png" alt="" />
-                    </QuestionBox>
-                    <QuestionBox>
-                        <p>Lorem ipsum, dolor si... ?</p> <img src="/quiz-imgs/right.png" alt="" />
-                    </QuestionBox>
-                    <QuestionBox>
-                        <p>Lorem ipsum, dolor si... ?</p> <img src="/quiz-imgs/wrong.png" alt="" />
-                    </QuestionBox>
-                    <QuestionBox>
-                        <p>Lorem ipsum, dolor si... ?</p> <img src="/quiz-imgs/right.png" alt="" />
-                    </QuestionBox>
+
+                    {userQuestionAndAnswers.map((data, index) => {
+                        return (
+                            <QuestionBox key={index}>
+                                <p>{data.question.substring(0, 35) + '...'}</p>
+                                <img src={data.answer ? '/quiz-imgs/right.png' : '/quiz-imgs/wrong.png'} alt="" />
+                            </QuestionBox>
+                        )
+                    })}
+
                 </QuestionsBoxContainer>
 
             </QuestionContainer>
