@@ -4,25 +4,31 @@ import { Logo } from "../../Main/Main.style";
 
 export const PageLogo = styled(Logo)`
 
-    margin-top: 20em;
+    max-width: 80%;
 
     .sign-in-greeting{
         font-family: var(--font-mooli);
         margin: 1em 0;
         font-size: 1.3em;
+        text-align: center;
         }
 `
 export const FormStyleContainer = styled.div`
-    height: 100%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+    background-color: #F2D280;
+    width: 60%;
+    border-radius: 30px ;
+    margin: 0 auto;
+    margin-top: 15em;
+    padding: 1em 0;
+
 `
 
 export const FormStyle = styled.form`
-    margin-top: 2em;
     display: flex;
+    align-items:center;
     flex-direction: column;
+    margin: 2em 0;
+
 `
 
 export const TypeFieldStyle = styled.div`
@@ -45,16 +51,16 @@ export const TypeFieldStyle = styled.div`
         width: 100%;
         height: 100%;
         padding: 10px;
-        border: 1px solid #ccc;
+        border: 2px solid #919480;
         outline: none;
         background-color: var(--color-palegoldenrod);
     }
 `
 
 export const ActionLink = styled.div`
-    display: flex;
-    justify-content: space-around;
 
+    display: flex;
+    gap: 6em;
     & a {
         text-decoration: none;
         color: black;
@@ -64,6 +70,20 @@ export const ActionLink = styled.div`
     }
     & p {
         font-family: var(--font-mooli);
+    }
+
+`
+
+export const SubmitBtn = styled.div`
+    display: flex;
+    padding: 1em;
+
+    & input {
+        background-color: var(--color-palegoldenrod);
+        padding: 0.4em 1.5em;
+        border-radius: 30px;
+        border: 2px solid #919480;
+        cursor:pointer;
     }
 
 `
