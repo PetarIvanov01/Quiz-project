@@ -1,4 +1,4 @@
-import { memo, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { AnswerContainer, QuestionBoxStyle, SectionStyle } from "../../../styles/ViewStyle/Game.style";
 
 import decodeHtmlEntities from "../../../util/decode";
@@ -8,6 +8,7 @@ const QuestionAndAnswers = ({ currentQuestion, onClickReset }) => {
 
     const [isAnswered, setAnswer] = useState(false);
     const [isDisabled, setDisable] = useState(false);
+
 
     const [isCorrect, setIsCorrect] = useState({
         name: '',
@@ -19,6 +20,7 @@ const QuestionAndAnswers = ({ currentQuestion, onClickReset }) => {
 
         const timeout = setTimeout(() => {
             setDisable(false)
+
         }, 1000)
 
         if (isAnswered) {
@@ -52,7 +54,6 @@ const QuestionAndAnswers = ({ currentQuestion, onClickReset }) => {
                 correct: prev.correct
             }));
         }
-
     }
 
     return (
@@ -80,4 +81,4 @@ const QuestionAndAnswers = ({ currentQuestion, onClickReset }) => {
     )
 }
 
-export default memo(QuestionAndAnswers)
+export default QuestionAndAnswers
