@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import { useNavContext } from "../../../context/navigation";
 
-import useQuizTimer from "../../../hooks/useQuizTimer.js";
+import useQuizTimer from "../../../hooks/useQuizTimer";
 import useQuizNavigation from "../../../hooks/useQuizNavigation";
 import useQuizReset from "../../../hooks/useQuizReset";
 
