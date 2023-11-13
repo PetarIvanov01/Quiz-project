@@ -6,6 +6,7 @@ const CategoriesSection = styled.section`
     gap: 3.5em;
     flex-direction: column;
     align-items: center;
+    padding-bottom: 2em;
 
 
 .categories-text{

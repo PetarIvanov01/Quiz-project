@@ -1,0 +1,17 @@
+[
+    {
+        "imgLink": "/home-imgs/categories/sport.png",
+        "category": "Sport",
+        "to": "sport"
+    },
+    {
+        "imgLink": "/home-imgs/buttonplay3@3x.png",
+        "category": "History",
+        "to": "history"
+    },
+    {
+        "imgLink": "/home-imgs/categories/general.png",
+        "category": "General",
+        "to": "general"
+    }
+]
