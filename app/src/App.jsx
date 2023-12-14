@@ -12,26 +12,30 @@ import RegsiterView from "./components/View/Register/Register"
 import LeaderboardView from "./components/View/Leaderboard/LeaderboardView"
 
 export default function App() {
-
+  
   return (
     <>
       <WindowRoot>
         <NavigationProvider>
           <Header />
+
           <Routes>
             <Route path="/" element={<Main />} />
+
             <Route element={<TransitionToGame />}>
               <Route path="/game/:category" element={<GamePlay />} />
             </Route>
+            
             <Route path="/game/:category/complete" element={<CompleteGame />} />
             <Route path="/leaderboard" element={<LeaderboardView />} />
             <Route path="/login" element={<LoginView />} />
             <Route path="/register" element={<RegsiterView />} />
           </Routes>
+
         </NavigationProvider>
       </WindowRoot>
       <Footer />
     </>
-  )
-}
+  );
+};
 

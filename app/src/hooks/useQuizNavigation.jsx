@@ -16,5 +16,5 @@ export default function useQuizNavigation(quizData, timer, onCompleteGame, userA
     const currentQuestion = quizData[currentQuestionIndex];
 
     return { currentQuestion };
-}
+};
 

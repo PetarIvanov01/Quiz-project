@@ -21,6 +21,6 @@ export default function useQuizTimer(showExitConfirmation) {
         return () => clearTimeout(timeout);
 
     }, [showExitConfirmation]);
-
+    
     return { timer, setTimer };
-}
+};
